@@ -1,0 +1,134 @@
+*{
+    font-family: 'Montserrat', sans-serif;
+
+}
+    /* Square corners everywhere */
+    #custom-cards-section #searchInput {
+      border-radius: 0 !important;
+    }
+    #custom-cards-section .bots-card {
+      border-radius: 0 !important;
+    }
+    #custom-cards-section .bots-card-icon {
+      border-radius: 0 !important;
+    }
+    #custom-cards-section .bots-price-bubble {
+      border-radius: 0 !important;
+    }
+
+    /* Montserrat font */
+    #custom-cards-section,
+    #custom-cards-section * {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* Section container */
+    #custom-cards-section {
+      background-position: center;
+      background-size: cover;
+      padding: 20px;
+    }
+
+    /* Search input styling */
+    #searchInput {
+      width: 400px;
+      max-width: 100%;
+      padding: 10px;
+      font-size: 1rem;
+      margin: 0 auto 20px auto;
+      display: block;
+      background-color: #1b1f44;
+      border: none;
+      height: 46px;
+      outline: none;
+      color: #fff;
+    }
+
+    /* Cards grid – 3 cols desktop, 2 cols tablet, 1 col mobile */
+    .bots-cards-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      justify-content: center;
+    }
+    @media (max-width: 1024px) {
+      .bots-cards-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 600px) {
+      .bots-cards-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Card styling */
+    .bots-card {
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+      height: 75px;
+      border: 1px solid rgba(255, 255, 255, 0.125);
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      color: #fff;
+      transition: transform 0.3s ease;
+      text-decoration: none;
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+    }
+    .bots-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0));
+      pointer-events: none;
+    }
+    .bots-card:hover {
+      transform: scale(1.05);
+    }
+
+    /* Clickable link wrapper */
+    .bots-card-link {
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    /* Icon on the left */
+    .bots-card-icon {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+    }
+
+    /* Title */
+    .bots-card-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      flex: 1;
+      color: #ffffff;
+    }
+
+    /* Price bubble */
+    .bots-price-bubble {
+      background: #8C52FF;
+      color: #fff;
+      padding: 5px 15px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    /* Grayed-out state */
+    .bots-card.grayed {
+      filter: grayscale(100%);
+      opacity: 0.5;
+    }
+  

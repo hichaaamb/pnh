@@ -1,0 +1,102 @@
+/* ───── Pre-header bar ───── */
+.preheader {
+  background: #1b1f44; /* adjust if needed */
+  color: #fff;
+  padding: 0.5rem;
+  font-size: 16px;
+}
+.preheader .badge {
+  display: inline-block;
+  background: #8c52ff;
+  color: #fff;
+  font-size: 16px;
+  padding: 0.1rem 0.4rem;
+  margin-right: 10px;
+}
+
+/* ───── Main header ───── */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: #0d1129;
+}
+.site-logo img {
+  width: 220px;
+}
+
+/* ───── Nav ───── */
+.site-nav ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+.site-nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+}
+.site-nav li {
+  position: relative;
+}
+
+/* ───── Header buttons ───── */
+.header-buttons a {
+  display: inline-block;
+  margin-left: 1rem;
+  padding: 0.5rem 1rem;
+  background: #8c52ff;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* ───── Mega-menu for Game Servers ───── */
+.nav-item--games:hover .mega-menu {
+  display: block;
+}
+.mega-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100vw;
+  background: #0d1129;
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  z-index: 10;
+}
+.mega-menu .games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+}
+.mega-menu .game-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.mega-menu .game-card img {
+  width: 32px; height: 32px;
+  object-fit: cover;
+}
+.mega-menu .game-title {
+  color: #fff;
+  font-weight: 600;
+}
+.mega-menu .game-price {
+  color: #ccc;
+  font-size: 0.9rem;
+}
+
+
+
+
+
+
+
+

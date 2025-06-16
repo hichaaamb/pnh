@@ -1,0 +1,13 @@
+{{/* fetch products & currencies once */}}
+{{ $cfg := .Site.Params.whmcs }}
+{{ $prodURL := printf
+    "%s?action=getproducts&identifier=%s&secret=%s&currency=%s&responsetype=json"
+    $cfg.baseURL $cfg.identifier $cfg.secret $cfg.currency }}
+{{ $resp := getJSON $prodURL }}
+{{ .Scratch.Set "whmcsProducts" $resp.products.product }}
+
+{{ $curURL := printf
+    "%s?action=getcurrencies&identifier=%s&secret=%s&responsetype=json"
+    $cfg.baseURL $cfg.identifier $cfg.secret }}
+{{ $cres := getJSON $curURL }}
+{{ .Scratch.Set "whmcsCurrencies" $cres.currencies.currency }}

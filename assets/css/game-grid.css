@@ -1,0 +1,239 @@
+.stream-ui__grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* center the row contents */
+  gap: 20px;
+}
+
+/* Desktop: 6 per row (you already have this) */
+.stream-ui__card {
+  flex: 0 0 calc((100% - 5 * 20px) / 6);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    .stream-ui__root {
+      background-color: #0d1129;
+      margin: 0;
+      padding: 20px;
+      font-family: 'Montserrat', sans-serif;
+      color: #fff;
+    }
+    /* Main layout */
+    .stream-ui__container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    /* Controls section */
+    .stream-ui__controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      box-sizing: border-box;
+      gap: 12px;
+    }
+    /* Filter buttons */
+    .stream-ui__filter-group {
+      display: flex;
+      gap: 12px;
+    }
+    .stream-ui__filter {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 46px;
+      padding: 0 14px;
+      background: #1b1f44;
+      cursor: pointer;
+      font-size: 0.95rem;
+      color: #fff;
+    }
+    .stream-ui__filter input { display: none; }
+    .stream-ui__filter.active { background: #8C52FF; }
+    .stream-ui__filter-text { font-size: 0.95rem; font-weight: 500; }
+
+    /* Search bar */
+    .stream-ui__search-container {
+      display: inline-flex;
+      align-items: center;
+      width: 400px;
+      height: 46px;
+      padding: 0 12px;
+      background-color: #1b1f44;
+    }
+    .stream-ui__search-container:focus-within { border-color: #8C52FF; }
+    .stream-ui__search-icon { width: 16px; height: 16px; fill: rgba(255,255,255,0.7); margin-right: 8px; }
+    .stream-ui__search-input {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: #fff;
+      font-size: 1rem;
+    }
+    .stream-ui__search-input::placeholder { color: rgba(255,255,255,0.5); }
+
+    /* Card grid & cards */
+    .stream-ui__grid { display: flex; flex-wrap: wrap; gap: 20px; }
+    .stream-ui__card {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      flex: 0 0 calc((100% - 5 * 20px) / 6);
+    }
+    .stream-ui__card-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 285/380;
+      padding-left: 12px;
+      padding-bottom: 12px;
+      overflow: hidden;
+      display: block;
+      text-decoration: none;
+    }
+    .stream-ui__card-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: translate(-12px, 12px);
+      transition: transform 0.3s ease-in-out;
+    }
+    .stream-ui__card-frame:hover .stream-ui__card-image { transform: translate(0, 0); }
+
+    .stream-ui__card-frame::before,
+    .stream-ui__card-frame::after {
+      content: '';
+      position: absolute;
+      background: #8C52FF;
+      transition: all 0.3s ease-in-out;
+      z-index: 0;
+    }
+    .stream-ui__card-frame::before { top: 0; left: 0; width: 0; height: 100%; }
+    .stream-ui__card-frame:hover::before { width: 12px; }
+    .stream-ui__card-frame::after { bottom: 0; left: 0; width: 100%; height: 0; }
+    .stream-ui__card-frame:hover::after { height: 12px; }
+
+    .stream-ui__bevel-tl, .stream-ui__bevel-br {
+      position: absolute;
+      width: 12px; height: 12px;
+      background: #111;
+      z-index: 5;
+    }
+    .stream-ui__bevel-tl {
+      top: 0; left: 0;
+      clip-path: polygon(0 0, 100% 0, 0 100%);
+      background-color: #0d1129;
+    }
+    .stream-ui__bevel-br {
+      bottom: 0; right: 0;
+      clip-path: polygon(100% 0, 0 100%, 100% 100%);
+      background-color: #0d1129;
+    }
+
+    .stream-ui__details {
+        margin-top: 8px; 
+    }
+
+    .stream-ui__title { 
+        font-size: 1rem; 
+        font-weight: 600; 
+        margin-bottom: 4px; 
+        color: #fff;
+    }
+
+    .stream-ui__price { 
+        font-size: 0.9rem; 
+        margin-bottom: 4px; 
+        color: #fff;
+    }
+
+    .stream-ui__price-label {
+         font-weight: 400;
+         }
+
+    .stream-ui__price-value {
+         font-weight: 600; 
+        }
+
+    .stream-ui__icon svg {
+         width: 20px; height: 20px; margin-right: 4px; fill: #8C52FF; 
+        }
+    
+
+
+
+/* Tablet: 3 per row */
+@media (max-width: 768px) {
+  .stream-ui__card {
+    flex: 0 0 calc((100% - 2 * 20px) / 3);
+  }
+}
+
+/* Small: 2 per row */
+@media (max-width: 576px) {
+  .stream-ui__card {
+    flex: 0 0 calc((100% - 1 * 20px) / 2);
+  }
+}
+
+/* Tiny: full-width but force at least two rows by limiting max-per-row to 2 */
+@media (max-width: 480px) {
+  .stream-ui__card {
+    flex: 0 0 100%;
+    max-width: calc((100% - 1 * 20px) / 2);
+  }
+}
+
+
+
+
+
+/* Stack search above filters on mobile & tablet */
+@media (max-width: 768px) {
+  .stream-ui__controls {
+    flex-direction: column;
+    align-items: stretch;      /* stretch children to full width */
+  }
+  .stream-ui__search-container {
+    order: -1;                 /* move search to top */
+    width: 100%;
+    margin-bottom: 12px;
+  }
+  .stream-ui__filter-group {
+    width: 100%;
+    justify-content: center;   /* center the buttons row */
+    flex-wrap: wrap;           /* allow wrapping if need be */
+    gap: 8px;
+  }
+  .stream-ui__filter {
+    flex: 1;                   /* buttons all equal width */
+    justify-content: center;
+  }
+}
+
+/* On very small screens, tighten up */
+@media (max-width: 480px) {
+  .stream-ui__search-container {
+    margin-bottom: 8px;
+    padding: 0 8px;            /* a bit more gutter */
+  }
+  .stream-ui__controls {
+    gap: 8px;
+  }
+}
+
+

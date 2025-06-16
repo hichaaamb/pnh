@@ -1,0 +1,85 @@
+
+
+
+
+
+
+
+
+body {
+  background-color: #0d1129;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+
+/* ► TAB PANELS */
+.game-tabs input[type="radio"] { display: none; }
+.game-tabs-content { margin-bottom: 2rem; }
+.game-tabs-panel { display: none; }
+#game-tabs-rust:checked        ~ .game-tabs-content #panel-game-tabs-rust,
+#game-tabs-palworld:checked    ~ .game-tabs-content #panel-game-tabs-palworld,
+#game-tabs-7daystodie:checked  ~ .game-tabs-content #panel-game-tabs-7daystodie,
+#game-tabs-cs2:checked         ~ .game-tabs-content #panel-game-tabs-cs2,
+#game-tabs-arma3:checked       ~ .game-tabs-content #panel-game-tabs-arma3,
+#game-tabs-minecraft:checked   ~ .game-tabs-content #panel-game-tabs-minecraft {
+  display: block;
+}
+
+/* ► MAIN LAYOUT */
+.game-tabs { max-width:1200px; margin:0 auto; color:#fff; }
+.game-tabs-main { display:flex; flex-wrap:wrap; gap:2rem; align-items:center; }
+.game-tabs-text { flex:1 1 350px; }
+.game-tabs-hero { flex:1 1 350px; text-align:center; }
+.game-tabs-hero img { max-width:100%; height:auto; border-radius:8px; }
+
+/* ► TITLES & DESC */
+.game-tabs-title { font-size:2.5rem; margin:0 0 1rem; line-height:1.1; }
+.game-tabs-title-highlight { color:#8c52ff; font-weight:800; font-size:70px; }
+.game-tabs-title-normal    { color:#fff; }
+.game-tabs-description { color:#ccc; line-height:1.6; margin-bottom:1.5rem; }
+
+/* ► PLAN CARDS */
+.game-tabs-plan-list { display:flex; flex-direction:column; gap:1rem; }
+.game-tabs-plan {
+  display:flex; align-items:center; background:#1b1f44; padding:9px;
+  text-decoration:none; color:inherit; transition:transform .2s;
+}
+.game-tabs-plan:hover { transform:translateY(-4px); }
+.game-tabs-plan-icon { width:50px; height:auto; margin-right:1rem; flex-shrink:0; }
+.game-tabs-plan-content { flex:1; }
+.game-tabs-plan-title { font-size:18px; margin:0; line-height:1.2; font-weight:600; }
+.game-tabs-plan-details { font-size:1rem; opacity:.8; margin-top:.25rem; }
+.game-tabs-plan-price {
+  font-size:19px; font-weight:bold; color:#e1e1e1; margin-left:auto;
+  white-space:nowrap;
+}
+.game-tabs-plan-price small {
+  font-size:14px; color:#ccc; font-weight:normal; margin-left:.25rem;
+}
+
+/* ► LOGO TAB LIST */
+.game-tabs-tab-list {
+  display:flex; justify-content:center; gap:1rem; overflow-x:auto;
+}
+.game-tabs-tab { opacity:.6; transition:opacity .2s; cursor:pointer; }
+.game-tabs-tab img { width:180px; height:auto; display:block; }
+.game-tabs-tab:hover { opacity:1; }
+#game-tabs-rust:checked     ~ .game-tabs-tab-list label[for="game-tabs-rust"],
+#game-tabs-palworld:checked ~ .game-tabs-tab-list label[for="game-tabs-palworld"],
+#game-tabs-7daystodie:checked ~ .game-tabs-tab-list label[for="game-tabs-7daystodie"],
+#game-tabs-cs2:checked      ~ .game-tabs-tab-list label[for="game-tabs-cs2"],
+#game-tabs-arma3:checked    ~ .game-tabs-tab-list label[for="game-tabs-arma3"],
+#game-tabs-minecraft:checked ~ .game-tabs-tab-list label[for="game-tabs-minecraft"] {
+  opacity:1;
+}
+
+/* ► RESPONSIVE TWEAKS */
+@media (max-width:800px) { .game-tabs-main { flex-direction:column; } }
+@media (max-width:600px) {
+  .game-tabs-plan-title  { font-size:1.3rem; }
+  .game-tabs-plan-details{ font-size:.9rem; }
+  .game-tabs-plan-price  { font-size:1.4rem; }
+}

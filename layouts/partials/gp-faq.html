@@ -1,0 +1,52 @@
+<section class="gp-faq">
+  <div class="pn-container">
+    <div class="gp-faq__inner">
+
+      <!-- LEFT SIDE: Headline + Intro + Buttons -->
+      <div class="gp-faq__left">
+        <h2 class="gp-faq__title">
+          <span class="gp-faq__highlight">F</span>REQUENTLY<br>
+          <span class="gp-faq__highlight">A</span>SKED<br>
+          <span class="gp-faq__highlight">Q</span>UESTIONS
+        </h2>
+        <p class="gp-faq__desc">{{ .Params.faqIntro }}</p>
+        <div class="gp-faq__buttons">
+          <a href="{{ .Params.faqLink }}"
+             class="gp-faq__btn gp-faq__btn--primary">
+            View FAQ
+          </a>
+          <a href="{{ .Params.kbLink }}" class="gp-faq__btn">
+            Knowledgebase
+          </a>
+        </div>
+      </div>
+
+      <!-- RIGHT SIDE: Accordion -->
+      <div class="gp-faq__right">
+        {{ range .Params.faqs }}
+        <div class="gp-faq__item">
+          <button class="gp-faq__question">
+            {{ .question }}
+            <span class="gp-faq__icon">+</span>
+          </button>
+          <div class="gp-faq__answer">
+            {{ .answer | markdownify }}
+          </div>
+        </div>
+        {{ end }}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.gp-faq__question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.gp-faq__item');
+      item.classList.toggle('active');
+      btn.querySelector('.gp-faq__icon').textContent =
+        item.classList.contains('active') ? '−' : '+';
+    });
+  });
+</script>

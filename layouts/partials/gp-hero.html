@@ -1,0 +1,35 @@
+<link
+  href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap"
+  rel="stylesheet"
+/>
+
+
+<section class="pw-hero">
+  <div class="pw-header">
+    <div class="pw-header-image">
+      <img
+        src="{{ .Params.heroImage | relURL }}"
+        alt="{{ .Title }} server hosting"
+      />
+    </div>
+
+    <div class="pw-header-content">
+<h1 class="gp-hero__heading">
+  <span class="gp-game-name">{{ .Title }}</span>
+  <span class="gp-hero__subtitle">{{ .Params.subtitle }}</span>
+</h1>
+
+
+      <p>{{ .Params.description }}</p>
+
+      <div class="pw-features">
+        {{ range .Params.features }}
+          <div class="pw-feature">
+            {{ .icon | safeHTML }}
+            <span>{{ .label }}</span>
+          </div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>

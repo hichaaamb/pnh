@@ -1,0 +1,75 @@
+<div class="faq-section-container"> 
+  <div class="faq-section-left">
+<h2 class="faq-section-left">
+  <span class="faq-highlight">F</span><span class="faq-word">REQUENTLY</span><br>
+  <span class="faq-highlight">A</span><span class="faq-word">SKED</span><br>
+  <span class="faq-highlight">Q</span><span class="faq-word">UESTIONS</span>
+</h2>
+
+    <p>
+      Here are some of our new customers’ most common questions.
+      Need more help? Browse the knowledgebase or reach out to support.
+    </p>
+    <div class="faq-buttons">
+      <a href="#" class="faq-btn faq-btn-primary">View FAQ</a>
+      <a href="#" class="faq-btn faq-btn-secondary">Knowledgebase</a>
+    </div>
+  </div>
+
+  <div class="faq-section-right">
+    <div class="faq-accordion">
+      <details>
+        <summary>🖥️ What is a Rust Dedicated Server?</summary>
+        <div class="faq-content">
+          <p>A Rust dedicated server is a standalone server you fully control, offering guaranteed low-ping performance, 24/7 uptime, enterprise-grade DDoS protection, and full root access for custom configurations and mods.</p>
+        </div>
+      </details>
+      <details>
+        <summary>🛠️ How do I create a Rust server?</summary>
+        <div class="faq-content">
+          <p>Sign up on PLAYNHOST, choose your Rust plan, and complete checkout. You’ll receive login details by email—log into our control panel, configure slots and settings, deploy Oxide/uMod with one click, and your server goes live in minutes.</p>
+        </div>
+      </details>
+      <details>
+        <summary>🧩 Do you support mods and plugins?</summary>
+        <div class="faq-content">
+          <p>Absolutely. We offer one-click Oxide/uMod integration, support for Rust++ and Rust:IO, plus manual plugin uploads. Customize gameplay with new weapons, gather rates, blueprints, or map extensions easily.</p>
+        </div>
+      </details>
+      <details>
+        <summary>🆘 First server ever—will you help if I get stuck?</summary>
+        <div class="faq-content">
+          <p>Yes! Our gamer-focused support team is available 24/7 via live chat and Discord. We’ll walk you through console commands, plugin installs, performance tuning, or any Rust-specific questions.</p>
+        </div>
+      </details>
+      <details>
+        <summary>🌟 Why choose PLAYNHOST as my host?</summary>
+        <div class="faq-content">
+          <p>We combine pro-grade hardware with global server locations, an intuitive panel built by gamers, and a 3-day money-back guarantee. Experience ultra-low ping and instant DDoS defense tailored for Rust.</p>
+        </div>
+      </details>
+      <details>
+        <summary>💸 Can I get my money back if I don’t like the server?</summary>
+        <div class="faq-content">
+          <p>Yes. Request a refund within 3 days of order through the control panel and receive a full, hassle-free refund—no questions asked.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</div>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const items = document.querySelectorAll('.faq-accordion details');
+      items.forEach(item => {
+        item.addEventListener('toggle', () => {
+          if (item.open) {
+            items.forEach(other => {
+              if (other !== item) other.open = false;
+            });
+          }
+        });
+      });
+    });
+  </script>

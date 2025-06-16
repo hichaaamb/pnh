@@ -1,0 +1,132 @@
+/* import Montserrat */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap');
+
+
+
+
+
+.pw-feature img{
+    filter: brightness(0)saturate(100%)invert(30%)sepia(84%)saturate(1475%)hue-rotate(239deg)brightness(104%)contrast(103%);
+    margin-right: 5px;
+}
+
+
+.pw-hero {
+  padding: 2rem 1rem;
+  background: #0d1129;
+  color: #fff;
+
+}
+
+/* Desktop: image on right, content on left */
+.pw-header {
+  display: flex;
+  flex-direction: row-reverse;   /* <— flip the order */
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 2rem;
+  align-items: flex-start;
+
+
+}
+
+/* make sure image sits in its own flex item */
+.pw-header-image {
+  flex: 1;
+  order: 0;                      /* reset any ordering */
+}
+.pw-header-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.pw-header-content {
+  flex: 1;
+}
+
+.pw-header-content h1 {
+  font-size: 4rem;
+  line-height: 1.1;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.pw-game-name {
+  color: #8c52ff;
+}
+
+.pw-header-content p {
+  font-size: 1.125rem;
+  opacity: 0.8;
+  margin-bottom: 1rem;
+}
+
+/* features row */
+.pw-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 2rem;
+}
+
+.pw-feature {
+  display: flex;
+  align-items: center;
+  font-size: 0.95rem;
+}
+
+.pw-feature svg {
+  width: 1.1em;
+  height: 1.1em;
+  margin-right: 0.5rem;
+  fill: #8c52ff;
+}
+
+/* Mobile: stack, image on top */
+@media (max-width: 600px) {
+  .pw-header {
+    flex-direction: column;     /* back to normal stacked */
+    align-items: center;
+    text-align: center;
+  }
+  .pw-header-image {
+    order: -1;                  /* force image above the text */
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  .pw-header-content h1 {
+    font-size: 2.5rem;
+  }
+  .pw-header-content p {
+    font-size: 1rem;
+  }
+  .pw-features {
+    flex-direction: column;
+    gap: 0.75rem 1rem;
+  }
+  .pw-feature {
+    justify-content: center;
+  }
+}
+
+
+
+
+
+.gp-hero__heading {
+  color: #8c52ff;
+  font-size: 4rem;
+  line-height: 1.1;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+/* make the subtitle sit on its own line and never wrap */
+.gp-hero__subtitle {
+  display: block;       /* force a line‐break before and after */
+  white-space: nowrap;  /* never break within these words */
+  margin-top: 0.25em;   /* a little breathing room */
+  color: #fff;          /* inherited from your theme, override if needed */
+}

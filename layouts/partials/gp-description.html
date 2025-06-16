@@ -1,0 +1,60 @@
+<section
+  class="pn-video-gallery pn-full-width-section"
+  style="background-color: #0f1320; /* or whatever bg you need */"
+>
+  <!-- VIDEO + TEXT ROW -->
+  <div class="pn-container">
+    <div class="pn-flex">
+      <div class="pn-video-section">
+        <div class="pn-video-embed">
+          <iframe
+            src="{{ .Params.videoURL }}"
+            title="{{ .Title }} trailer"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+      <div class="pn-support-text">
+        <h2 class="pn-heading">
+          {{/* if exactly 3 words, highlight the middle one */}}
+          {{ $words := split (upper .Params.videoSectionTitle) " " }}
+          {{ if eq (len $words) 3 }}
+            {{ index $words 0 }}
+            <span class="pn-highlight">{{ index $words 1 }}</span>
+            {{ index $words 2 }}
+          {{ else }}
+            {{ .Params.videoSectionTitle | upper }}
+          {{ end }}
+        </h2>
+        <p>{{ .Params.videoSectionText }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- GALLERY + TEXT ROW -->
+  <div class="pn-container" style="margin-top: 2rem;">
+    <div class="pn-flex">
+      <div class="pn-support-section">
+        <h2 class="pn-heading">
+          {{ $g := split (upper .Params.gallerySectionTitle) " " }}
+          {{ if eq (len $g) 3 }}
+            {{ index $g 0 }}
+            <span class="pn-highlight">{{ index $g 1 }}</span>
+            {{ index $g 2 }}
+          {{ else }}
+            {{ .Params.gallerySectionTitle | upper }}
+          {{ end }}
+        </h2>
+        <p>{{ .Params.gallerySectionText }}</p>
+      </div>
+      <div class="pn-gallery">
+        {{ range .Params.gallery }}
+          <div class="pn-image-container">
+            <img src="{{ . | relURL }}" alt="{{ $.Title }} screenshot">
+          </div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,160 @@
+   :root {
+      --faq-purple: #8C52FF;
+      --faq-dark-bg: #0d0d23;
+      --faq-panel-bg: #1b1f44;
+      --faq-text-light: #F5F5F5;
+      --faq-text-muted: #B0B0C3;
+      --faq-btn-secondary-bg: #1b1f44;
+      --faq-font: 'Montserrat', sans-serif;
+    }
+
+ 
+
+    /* Layout */
+    .faq-section-container {
+      display: flex;
+      gap: 40px;
+      width: 100%;
+      padding: 60px 20px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .faq-section-left {
+      flex: 1 1 40%;
+    }
+    .faq-section-left h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      line-height: 1.1;
+    }
+    .faq-highlight { color: var(--faq-purple); }
+    .faq-section-left p {
+      color: var(--faq-text-muted);
+      margin-bottom: 30px;
+    }
+
+    .faq-buttons { display: flex; gap: 16px; }
+    .faq-btn {
+      text-decoration: none;
+      font-weight: 600;
+      padding: 12px 24px;
+      transition: background .2s;
+      display: inline-block;
+    }
+    .faq-btn-primary {
+      background: var(--faq-purple);
+      color: #fff;
+    }
+    .faq-btn-secondary {
+      background: var(--faq-btn-secondary-bg);
+      color: #ccc;
+    }
+
+    .faq-section-right { flex: 1 1 60%; }
+    .faq-accordion details {
+      background: var(--faq-panel-bg);
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+    .faq-accordion summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 16px 24px;
+      font-size: 1.1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--faq-panel-bg);
+      color: #fff;
+    }
+    .faq-accordion summary:hover {
+      background: var(--faq-purple);
+    }
+    .faq-accordion summary::-webkit-details-marker {
+      display: none;
+    }
+    .faq-accordion summary::after {
+      content: '';
+      width: 1em; height: 1em;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" fill="%238C52FF" stroke="%238C52FF" stroke-width="102.4"><path d="M903.232 256l56.768 50.432L512 768 64 306.432 120.768 256 512 659.072z"/></svg>');
+      background-size: contain;
+      background-repeat: no-repeat;
+      transition: transform .2s;
+    }
+    .faq-accordion details[open] summary::after {
+      transform: rotate(180deg);
+    }
+
+    .faq-content {
+      padding: 16px 24px 16px 56px;
+      background: var(--faq-panel-bg);
+      color: #fff;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition:
+        max-height 0.35s ease,
+        opacity     0.35s ease;
+    }
+    .faq-accordion details[open] .faq-content {
+      max-height: 500px; /* enough for your content */
+      opacity: 1;
+      animation: slideDown 0.35s ease;
+    }
+    @keyframes slideDown {
+      from { transform: translateY(-10px); }
+      to   { transform: translateY(0); }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .faq-section-container {
+        flex-direction: column;
+        gap: 24px;
+        padding: 40px 16px;
+      }
+      .faq-section-left, .faq-section-right { flex: 1 1 100%; }
+      .faq-section-left h2 { font-size: 2rem; margin-bottom: 16px; }
+      .faq-section-left p { font-size: .95rem; margin-bottom: 24px; }
+      .faq-buttons { flex-direction: column; gap: 12px; }
+      .faq-btn { width: 100%; text-align: center; }
+      .faq-accordion details { margin-bottom: 12px; }
+      .faq-accordion summary { padding: 12px 16px; font-size: 1rem; }
+      .faq-content { padding: 12px 16px 12px 40px; font-size: .95rem; }
+    }
+    @media (max-width: 480px) {
+      .faq-section-container { padding: 32px 12px; gap: 16px; }
+      .faq-section-left h2 { font-size: 1.75rem; }
+      .faq-section-left p, .faq-content { font-size: .9rem; }
+      .faq-accordion summary { padding: 10px 14px; }
+      .faq-content { padding-left: 36px; }
+    }
+    .faq-btn-primary:hover {
+  /* keep the same white text on hover */
+  color: #fff;
+}
+
+.faq-btn-secondary:hover {
+  /* keep the same muted text on hover */
+  color: #ccc;
+}
+.faq-accordion summary:hover::after,
+.faq-accordion details[open] summary:hover::after {
+  background-image: url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" fill="%232a2a3f" stroke="%232a2a3f" stroke-width="102.4">\
+<path d="M903.232 256l56.768 50.432L512 768 64 306.432 120.768 256 512 659.072z"/>\
+</svg>');
+}
+
+.faq-btn {
+  padding-top:    12px;
+  padding-bottom: 12px;
+  padding-left:   16px;
+  padding-right:  16px;
+}
+
+
+
+.faq-word {
+  color: #fff;
+}

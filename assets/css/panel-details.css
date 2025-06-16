@@ -1,0 +1,164 @@
+.panel-details-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #121635
+}
+
+.features-tabs {
+  display: flex;
+  gap: 20px;
+}
+
+/* Sidebar Tabs */
+.features-tabs__sidebar {
+  flex: 0 0 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.features-tabs__tab {
+  background: #1e2235;
+  color: #fff;
+  border: none;
+  padding: 16px;
+  text-align: left;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.3s;
+}
+.features-tabs__tab-main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.features-tabs__tab-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.features-tabs__icon svg {
+  width: 20px;
+  height: 20px;
+  color: #8c52ff;
+}
+.features-tabs__tab-desc {
+  display: none;
+  margin-top: 8px;
+  font-size: 0.95rem;
+  color: #ccc;
+  line-height: 1.4;
+}
+.features-tabs__tab-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: #2a2e42;
+  overflow: hidden;
+}
+.features-tabs__tab-progress span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: #8c52ff;
+  transition: width 0.3s;
+}
+
+/* inline tab image (mobile only) */
+.features-tabs__tab-img {
+  display: none;
+  width: 100%;
+  margin-top: 12px;
+}
+
+/* Active Tab States */
+.features-tabs__tab.active {
+  background: #292f4c;
+}
+.features-tabs__tab.active .features-tabs__tab-desc {
+  display: block;
+}
+.features-tabs__tab.active .features-tabs__tab-progress span {
+  width: 100%;
+}
+
+/* Content Pane */
+.features-tabs__content {
+  flex: 1;
+  min-width: 0;
+}
+.features-tabs__pane {
+  display: none;
+}
+.features-tabs__pane.active {
+  display: block;
+}
+.features-tabs__pane img {
+  width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .features-tabs {
+    flex-direction: column;
+  }
+  .features-tabs__sidebar {
+    width: 100%;
+    gap: 12px;
+    order: 0;
+  }
+  .features-tabs__tab {
+    width: 100%;
+    padding: 12px;
+    white-space: normal;
+  }
+  .features-tabs__tab-desc {
+    display: block;
+  }
+  .features-tabs__tab-progress {
+    display: none;
+  }
+  .features-tabs__content {
+    display: none;
+  }
+  .features-tabs__tab.active .features-tabs__tab-img {
+    display: block;
+  }
+}
+
+
+
+
+
+/* Panel Intro (add into your <style> or CSS file) */
+.panel-intro {
+  text-align: center;
+  margin: 3rem 0;
+  padding: 0 1rem;
+}
+.panel-intro__title {
+  font-size: clamp(1.5rem, 3vw, 3rem);
+  line-height: 1.1;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+.panel-intro__subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  line-height: 1.5;
+  color: #adb3c5;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Small tweaks for super-small screens */
+@media (max-width: 480px) {
+  .panel-intro {
+    margin: 2rem 0;
+  }
+  .panel-intro__title {
+    margin-bottom: .75rem;
+  }
+}

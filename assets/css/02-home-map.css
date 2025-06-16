@@ -1,0 +1,42 @@
+.hosting-map {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+
+  background-color: #1b1f44;
+  text-align: center;
+  padding: clamp(2rem, 0vw, 4rem) 2rem;
+  color: #fff;
+}
+
+.hosting-map h2 {
+
+  font-size: clamp(1.75rem, 5vw + 0.5rem, 2.5rem);
+  margin-bottom: 50px;
+  color: #fff; 
+  line-height: 1.2;
+
+}
+
+
+
+@media (max-width: 360px) {
+  .hosting-map h2 {
+    font-size: 1.5rem;
+  }
+}
+
+.map-container {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.map-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}

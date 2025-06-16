@@ -1,0 +1,78 @@
+<!-- Features Tabs Partial -->
+<div class="panel-details-container">
+  <!-- Panel Intro Section -->
+<div class="panel-intro">
+  <h2 class="panel-intro__title">
+    EXPERIENCE OUR NEW CONTROL PANEL
+  </h2>
+  <p class="panel-intro__subtitle">
+    Manage your game servers effortlessly with our powerful new interface spin up, configure, and monitor in seconds.
+  </p>
+</div>
+
+  <div class="features-tabs">
+    <div class="features-tabs__sidebar">
+      <button class="features-tabs__tab active" data-tab="console">
+        <div class="features-tabs__tab-main">
+          <span class="features-tabs__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M4 17l6-6-6-6"/><path d="M12 19h8"/>
+            </svg>
+          </span>
+          <span class="features-tabs__tab-title">Real-Time Console</span>
+        </div>
+        <p class="features-tabs__tab-desc">
+          The console now feels smooth and instant, with a beautiful new design and optional message highlighting, filtering & log sharing.
+        </p>
+        <!-- inline image for mobile expand -->
+        <img src="/images/panel/panel demo 1.png" alt="Console Panel" class="features-tabs__tab-img">
+        <div class="features-tabs__tab-progress"><span></span></div>
+      </button>
+
+      <button class="features-tabs__tab" data-tab="modpack">
+        <div class="features-tabs__tab-main">
+          <span class="features-tabs__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M3 12h18"/><path d="M12 3v18"/>
+            </svg>
+          </span>
+          <span class="features-tabs__tab-title">Modpack Installer</span>
+        </div>
+        <p class="features-tabs__tab-desc">
+          Manage and find the exact modpacks you need with advanced category and version filtering built right in.
+        </p>
+        <img src="/images/panel/panel demo 2.png" alt="Modpack Installer" class="features-tabs__tab-img">
+        <div class="features-tabs__tab-progress"><span></span></div>
+      </button>
+
+      <!-- Add more buttons similarly -->
+    </div>
+
+    <div class="features-tabs__content">
+      <div class="features-tabs__pane active" id="console">
+        <!-- desktop-only pane -->
+        <img src="/images/panel/panel demo 1.png" alt="Console Panel">
+      </div>
+      <div class="features-tabs__pane" id="modpack">
+        <img src="/images/panel/panel demo 2.png" alt="Modpack Installer">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.features-tabs__tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.features-tabs__tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+
+    document.querySelectorAll('.features-tabs__pane').forEach(pane => pane.classList.remove('active'));
+    document.getElementById(tab.dataset.tab).classList.add('active');
+  });
+});
+</script>

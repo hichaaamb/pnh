@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" 
+    rel="stylesheet">
+
+  {{/* → Load + bundle all your CSS → */}}
+  {{ $tabs    := resources.Get "css/00-game-tabs.css" }}
+  {{ $header  := resources.Get "css/01-header.css" }}
+  {{ $map     := resources.Get "css/02-home-map.css" }}
+  {{ $faq     := resources.Get "css/05-home-faq.css" }}
+  {{ $grid    := resources.Get "css/game-grid.css" }}      
+  {{ $global  := resources.Get "css/99-global.css" }}
+  {{ $footer  := resources.Get "css/10-footer.css" }}
+  {{ $title := resources.Get "css/games-title-section.css" }}
+  {{ $title := resources.Get "css/discordbots-title-section.css" }}
+  {{ $cta := resources.Get "css/cta-get-started.css" }}
+  {{ $features := resources.Get "css/features-grid.css" }}
+  {{ $discord := resources.Get "css/discord-bot-hosting.css" }}
+  {{ $panel := resources.Get "css/panel-details.css" }}
+  {{ $gphero := resources.Get "css/gp-hero.css" }}
+  {{ $gpfeatures := resources.Get "css/gp-features.css" }}
+  {{ $gpdescription := resources.Get "css/gp-description.css" }}
+  {{ $gpfaq := resources.Get "css/gp-faq.css" }}
+
+
+
+  {{ $styles := slice
+       $global
+       $tabs
+       $header
+       $map
+       $faq
+       $grid        
+       $footer
+       $title
+       $title
+       $cta
+       $features
+       $discord
+       $panel
+       $gphero
+       $gpfeatures
+       $gpdescription
+       $gpfaq
+
+    | resources.Concat "css/bundle.css"
+    | resources.Minify
+    | resources.Fingerprint "sha384" }}
+
+  <link
+    rel="stylesheet"
+    href="{{ $styles.Permalink }}"
+    integrity="{{ $styles.Data.Integrity }}"
+    crossorigin="anonymous" />
+
+  {{ block "head" . }}{{ end }}
+</head>
+<body class="{{ .Section }}">
+  {{ partial "header.html" . }}
+
+  <div class="container">
+    {{ block "main" . }}{{ end }}
+  </div>
+
+  {{ partial "footer.html" . }}
+</body>
+</html>

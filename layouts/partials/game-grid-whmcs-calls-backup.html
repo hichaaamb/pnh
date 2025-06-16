@@ -1,0 +1,145 @@
+{{/* layouts/partials/game-grid.html */}}
+
+{{/* — build the WHMCS API URL from config.toml */}}
+{{ $base   := .Site.Params.whmcs.baseURL }}
+{{ $id     := .Site.Params.whmcs.identifier }}
+{{ $sec    := .Site.Params.whmcs.secret }}
+{{ $curr   := .Site.Params.whmcs.currency }}
+{{ $apiURL := printf "%s?action=getproducts&identifier=%s&secret=%s&currency=%s&responsetype=json"
+               $base $id $sec $curr }}
+
+{{/* — only fetch live in production, otherwise leave empty */}}
+{{ $products := slice }}
+{{ if eq hugo.Environment "production" }}
+  {{ $res      := resources.GetRemote $apiURL }}
+  {{ $json     := transform.Unmarshal $res.Content }}
+  {{ $products = $json.result.products.product }}
+{{ else }}
+  {{ warnf "Skipping live WHMCS fetch in %q environment" hugo.Environment }}
+{{ end }}
+
+<!-- ────────────────────────────────────────────────────────────────────────── -->
+<!-- FILTER & SEARCH CONTROLS -->
+<div class="stream-ui__controls">
+
+  <div class="stream-ui__filter-group">
+    <label class="stream-ui__filter active">
+      <input type="radio" name="platform" value="all" checked>
+      <span class="stream-ui__filter-text">View All</span>
+    </label>
+    <label class="stream-ui__filter">
+      <input type="radio" name="platform" value="pc">
+      <span class="stream-ui__filter-text">PC</span>
+    </label>
+    <label class="stream-ui__filter">
+      <input type="radio" name="platform" value="mobile">
+      <span class="stream-ui__filter-text">Mobile</span>
+    </label>
+    <label class="stream-ui__filter">
+      <input type="radio" name="platform" value="console">
+      <span class="stream-ui__filter-text">Console</span>
+    </label>
+  </div>
+
+  <div class="stream-ui__search-container">
+    <svg class="stream-ui__search-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M15.5 14h-.79l-.28-.27a6.471 6.471 0 001.48-5.34C15.19 5.6 12.64 3 9.5 3S3.81 5.6 3.81 8.39 6.36 13.78 9.5 13.78c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    </svg>
+    <input
+      type="search"
+      class="stream-ui__search-input"
+      placeholder="Search for games…"
+      aria-label="Search for games"
+    >
+  </div>
+
+</div>
+<!-- ────────────────────────────────────────────────────────────────────────── -->
+
+<!-- ── DYNAMIC GRID ───────────────────────────────────────────────────────── -->
+<div class="stream-ui__grid">
+
+  {{ range where .Site.RegularPages "Section" "games" }}
+    {{ $p     := . }}
+    {{ $pid   := printf "%d" $p.Params.pid }}
+    {{ $match := where $products "pid" $pid }}
+    {{ $prod  := index $match 0 }}
+
+    <div class="stream-ui__card" data-platform="{{ delimit $p.Params.platforms "," }}">
+      <a href="{{ $p.Permalink }}" class="stream-ui__card-frame">
+        <div class="stream-ui__bevel-tl"></div>
+        <div class="stream-ui__bevel-br"></div>
+        <img
+          src="{{ $p.Params.heroImage }}"
+          alt="{{ $p.Title }}"
+          class="stream-ui__card-image"
+        >
+      </a>
+
+      <div class="stream-ui__details">
+        <div class="stream-ui__title">{{ $p.Title }}</div>
+
+        {{ if and $prod (eq hugo.Environment "production") }}
+          {{ $price := index (index $prod.pricing $curr) "monthly" }}
+          <div class="stream-ui__price">
+            <span class="stream-ui__price-label">Starting at </span>
+            <span class="stream-ui__price-value">{{ $curr }} {{ $price }}</span>
+          </div>
+        {{ else }}
+          <div class="stream-ui__price">
+            <span class="stream-ui__price-label">Starting at </span>
+            <span class="stream-ui__price-value">—</span>
+          </div>
+        {{ end }}
+
+        <div class="stream-ui__icon">
+          {{ range $plat := $p.Params.platforms }}
+            {{ if eq $plat "pc" }}
+              <!-- your PC SVG -->
+            {{ else if eq $plat "mobile" }}
+              <!-- your Mobile SVG -->
+            {{ else if eq $plat "console" }}
+              <!-- your Console SVG -->
+            {{ end }}
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  {{ end }}
+
+</div>
+<!-- ────────────────────────────────────────────────────────────────────────── -->
+
+<script>
+  const searchInput  = document.querySelector('.stream-ui__search-input');
+  const filterRadios = document.querySelectorAll('.stream-ui__filter input[name="platform"]');
+
+  function updateActiveFilter() {
+    document.querySelectorAll('.stream-ui__filter')
+            .forEach(lbl => lbl.classList.remove('active'));
+    const c = document.querySelector('.stream-ui__filter input:checked');
+    if (c) c.closest('label').classList.add('active');
+  }
+
+  function filterCards() {
+    const term = searchInput.value.trim().toLowerCase();
+    const plat = document.querySelector('.stream-ui__filter input:checked').value;
+    document.querySelectorAll('.stream-ui__card').forEach(card => {
+      const title = card.querySelector('.stream-ui__title').textContent.toLowerCase();
+      const plats = card.dataset.platform.split(',');
+      const okTerm = title.includes(term);
+      const okPlat = (plat === 'all') || plats.includes(plat);
+      card.style.display = (okTerm && okPlat) ? 'flex' : 'none';
+    });
+  }
+
+  searchInput.addEventListener('input', filterCards);
+  filterRadios.forEach(r => r.addEventListener('change', () => {
+    updateActiveFilter();
+    filterCards();
+  }));
+
+  // initialize
+  updateActiveFilter();
+  filterCards();
+</script>

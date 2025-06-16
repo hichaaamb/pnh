@@ -1,0 +1,70 @@
+
+    /* FULL-WIDTH BAR */
+    .pw-exclusive {
+      position: relative;
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      background: #8C52FF;
+      padding: 1.5rem 0;      /* vertical padding */
+      overflow: hidden;       /* clip pseudo-element */
+    }
+
+    /* PSEUDO-ELEMENT: the faint background image */
+    .pw-exclusive::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: #8c52ff;
+      opacity: 1;           /* very low opacity */
+      z-index: 1;
+    }
+
+    /* INNER WRAPPER – on top of the image */
+    .pw-exclusive__inner {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      text-align: center;
+    }
+
+    /* HEADING */
+    .pw-exclusive__title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: #fff;
+      margin: 0 0 1rem;
+    }
+
+    /* FEATURE PILLS */
+    .pw-feature-list {
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem 1rem;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .pw-feature-item {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 2.5rem;
+      padding: 0 1rem;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 0px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #fff;
+      
+    }
+    .pw-feature-item i {
+      margin-right: 0.5rem;
+      font-size: 1rem;
+    }
+  

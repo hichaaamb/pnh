@@ -1,0 +1,15 @@
+baseURL = "https://playnhost.com/"  
+languageCode = "en-us"
+title = "PLAYNHOST"
+theme = ""
+
+[params]
+  # Our only external call from Hugo
+  whmcsProxyURL   = "https://playnhost.com/billing/api-proxy.php"
+
+  # Which currency to pull out of the pricing block
+  defaultCurrency = "USD"
+
+
+
+

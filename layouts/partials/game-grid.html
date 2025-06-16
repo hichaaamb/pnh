@@ -1,0 +1,92 @@
+{{/* layouts/partials/game-grid.html */}}
+
+{{ $proxy := printf "%s?action=GetProducts&responsetype=json" .Site.Params.whmcsProxyURL }}
+
+{{/* Only fetch live data in production */}}
+{{ $products := slice }}
+{{ if eq hugo.Environment "production" }}
+  {{ $res      := resources.GetRemote $proxy }}
+  {{ $json     := transform.Unmarshal $res.Content }}
+  {{ if isset $json "products" }}
+    {{ $products = $json.products.product }}
+  {{ end }}
+{{ else }}
+  {{ warnf "Skipping WHMCS fetch in %q environment" hugo.Environment }}
+{{ end }}
+
+<!-- FILTER & SEARCH CONTROLS (unchanged) -->
+<div class="stream-ui__controls">…</div>
+
+<!-- GAME GRID -->
+<div class="stream-ui__grid">
+  {{ range where .Site.RegularPages "Section" "games" }}
+    {{ $p     := . }}
+    {{ $pid   := printf "%v" $p.Params.pid }}
+    {{ $prod  := index (where $products "pid" $pid) 0 }}
+
+    <div class="stream-ui__card" data-platform="{{ delimit $p.Params.platforms "," }}">
+      <a href="{{ $p.Permalink }}" class="stream-ui__card-frame">
+        <!-- bevels… -->
+        <img src="{{ $p.Params.heroImage }}" alt="{{ $p.Title }}" class="stream-ui__card-image">
+      </a>
+      <div class="stream-ui__details">
+        <div class="stream-ui__title">{{ $p.Title }}</div>
+
+        {{ if and $prod (eq hugo.Environment "production") }}
+          {{ $price := index (index $prod.pricing .Site.Params.defaultCurrency) "monthly" }}
+          <div class="stream-ui__price">
+            <span class="stream-ui__price-label">Starting at </span>
+            <span class="stream-ui__price-value">
+              {{ .Site.Params.defaultCurrency }} {{ $price }}
+            </span>
+          </div>
+        {{ else }}
+          <div class="stream-ui__price">
+            <span class="stream-ui__price-label">Starting at </span>
+            <span class="stream-ui__price-value">—</span>
+          </div>
+        {{ end }}
+
+        <div class="stream-ui__icon">…</div>
+      </div>
+    </div>
+  {{ end }}
+</div>
+
+
+<!-- ────────────────────────────────────────────────────────────────────────── -->
+
+
+<script>
+  const searchInput  = document.querySelector('.stream-ui__search-input');
+  const filterRadios = document.querySelectorAll('.stream-ui__filter input[name="platform"]');
+
+  function updateActiveFilter() {
+    document.querySelectorAll('.stream-ui__filter')
+            .forEach(lbl => lbl.classList.remove('active'));
+    const c = document.querySelector('.stream-ui__filter input:checked');
+    if (c) c.closest('label').classList.add('active');
+  }
+
+  function filterCards() {
+    const term = searchInput.value.trim().toLowerCase();
+    const plat = document.querySelector('.stream-ui__filter input:checked').value;
+    document.querySelectorAll('.stream-ui__card').forEach(card => {
+      const title = card.querySelector('.stream-ui__title').textContent.toLowerCase();
+      const plats = card.dataset.platform.split(',');
+      const okTerm = title.includes(term);
+      const okPlat = (plat === 'all') || plats.includes(plat);
+      card.style.display = (okTerm && okPlat) ? 'flex' : 'none';
+    });
+  }
+
+  searchInput.addEventListener('input', filterCards);
+  filterRadios.forEach(r => r.addEventListener('change', () => {
+    updateActiveFilter();
+    filterCards();
+  }));
+
+  // initialize
+  updateActiveFilter();
+  filterCards();
+</script>
